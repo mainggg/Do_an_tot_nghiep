@@ -1,0 +1,93 @@
+<nz-spin [nzSpinning]="spining">
+  <div id="chitetsanpham">
+    <div class="tren">
+      <nz-carousel class="carousel-product" nzAutoPlay [nzEffect]="effect">
+        <div
+          nz-carousel-content
+          *ngFor="let index of product?.imageDescription"
+        >
+          <img
+            style="width: 600px; height: 800px; object-fit: contain"
+            [src]="urlPreview + '/' + index.savedFileName"
+          />
+        </div>
+      </nz-carousel>
+      <div class="left">
+        <p class="ten">{{ product.productName }}</p>
+        <i class="ti-heart yeuthich"></i>
+        <div class="clear"></div>
+        <div class="avatar">
+          <img
+            style="width: 100px; height: 100px; object-fit: contain"
+            nz-image
+            [nzSrc]="urlPreview + '/' + product.avatar"
+            alt=""
+          />
+        </div>
+        <p class="gia">{{ product.price | number }}đ</p>
+        <div class="mau">
+          <p>Màu sắc</p>
+          <nz-select nzShowSearch [(ngModel)]="color">
+            <nz-option
+              *ngFor="let co of product.productColor"
+              [nzValue]="co"
+              [nzLabel]="co"
+            ></nz-option>
+          </nz-select>
+        </div>
+        <div class="size">
+          Chọn size
+          <ul class="si">
+            <li
+              class="size-detail"
+              (click)="clickSize(i)"
+              *ngFor="let size of arraySize; index as i"
+              [ngClass]="arrayClassSize[i]"
+            >
+              {{ size }}
+            </li>
+          </ul>
+        </div>
+        <div class="soluong">Số lượng</div>
+        <div>
+          <ul class="sl">
+            <li class="tang" (click)="clickQuantity('-')">-</li>
+            <li>{{ quantity }}</li>
+            <li class="tang" (click)="clickQuantity('+')">+</li>
+          </ul>
+        </div>
+        <div class="clear"></div>
+        <div class="themgh" (click)="saveCart()">
+          <i class="ti-shopping-cart"></i>Thêm vào giỏ hàng
+        </div>
+        <div class="mua" (click)="navigatePayment()">Mua ngay</div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="duoi">
+      <p class="thongtin">Thông tin sản phẩm</p>
+      <hr />
+      <p class="nd"><strong>Kiểu dáng: </strong>{{ product.productForm }}</p>
+      <p class="nd"><strong>Thiết kế:</strong></p>
+      <p>
+        {{ product.description }}
+        <!-- - Áo polo dài tay phom dáng Tech Golf được tinh chỉnh các thông số đem lại
+      sự thoải mái tối đa theo từng cử động của golfer. Áo được nâng cấp tính
+      năng Anti UV, giúp bảo vệ làn da với chỉ số kháng tia UV lên tới 98% và
+      bền bỉ trong suốt thời gian sử dụng. Công nghệ sợi vải Moisture Wicking
+      giúp áo thấm hút tốt, đồng thời khô nhanh hơn. -->
+      </p>
+      <!-- <p>
+      - Thiết kế khỏe khoắn, màu sắc nam tính, cùng họa tiết đại bàng độc đáo,
+      sáng tạo trên ngực trái áo đem đến diện mạo trẻ trung và lịch lãm cho
+      người mặc.
+    </p> -->
+      <p class="nd"><strong>Chất liệu:</strong></p>
+      <!-- <p>- 77% Nylon cho bề mặt vải độ mịn mượt, mỏng nhẹ</p>
+    <p>- 23% Spandex tạo độ co giãn tốt, thoải mái tối đa khi mặc.</p> -->
+      <p>{{ product.productMaterial }}</p>
+      <p class="nd"><strong>Màu sắc: </strong>{{ colorString }}</p>
+      <p class="nd"><strong>Size: </strong>{{ sizeString }}</p>
+    </div>
+  </div>
+</nz-spin>

@@ -1,0 +1,67 @@
+{
+  "en_US": "Tiếng Anh",
+  "vi_VN": "Tiếng Việt",
+  "hi": "Xin chào",
+  "all": "Tất cả",
+  "search": "Tìm kiếm",
+  "status": "Trạng thái",
+  "loading": "Đang tải...",
+  "tooltip": {
+    "close": "Đóng",
+    "change": {
+      "update": "Chuyển trạng thái cập nhật",
+      "read": "Chuyển trạng thái xem chi tiết"
+    }
+  },
+  "notification": {
+    "message": "Thông báo",
+    "valid_action": "Không tìm thấy hành động hợp lệ"
+  },
+  "auth": {
+    "message": "Bạn không có quyền truy cập chức năng này"
+  },
+  "button": {
+    "back": "Trở lại",
+    "close": "Đóng",
+    "add_new": "Thêm mới",
+    "confirm": "Xác nhận",
+    "cancel": "Hủy bỏ",
+    "rejected": "Từ chối",
+    "canceled": "Hủy trình",
+    "approved": "Phê duyệt",
+    "quota": "Ký nháy"
+  },
+  "pagination": {
+    "page": "trang",
+    "show": "Trang số",
+    "total": "của",
+    "record": "bản ghi",
+    "page.goto": "Đi đến trang",
+    "min": "Trang nhỏ nhất là một",
+    "max": "Trang lớn nhất là "
+  },
+  "sort": {
+    "desc": "Sắp xếp giảm dần",
+    "asc": "Sắp xếp tăng dần",
+    "search": "Tìm kiếm"
+  },
+  "message": {
+    "no_data": "Không có dữ liệu",
+    "no_config": "Không tìm thấy cấu hình",
+    "select": "Lựa chọn",
+    "stt": "STT",
+    "draft": "Bản nháp",
+    "pending": "Chờ duyệt",
+    "approved": "Phê duyệt",
+    "rejected": "Từ chối",
+    "canceled": "Hủy trình",
+    "note": "Lưu ý",
+    "titleBreadscrumb": "Thông báo",
+    "headerBreadscrumb": "Bạn có chắc chắn muốn thực hiện chức năng này",
+    "contentBreadscrumb": "Sau khi bạn xác nhận, dữ liệu chưa được lưu sẽ bị mất",
+    "required": "Trường này yêu cầu bắt buộc."
+  },
+  "modal": {
+    "hintWarning": "Lưu ý"
+  }
+}

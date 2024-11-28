@@ -1,0 +1,76 @@
+<div id="body-content">
+    <div class="header-last">
+        <div class="header-last__card">
+          <div class="card-icon">
+            <span style="color: black;" nz-icon nzType="check" nzTheme="outline"></span>
+          </div>
+          <div class="card-content__wrap">
+            <p class="card-content">Giỏ hàng</p>
+          </div>
+        </div>
+        <div class="header-last__pay">
+          <div class="pay-icon__wrap">
+            <p class="pay-icon">2</p>
+          </div>
+          <div class="pay-content__wrap">
+            <p class="pay-content">Đặt hàng</p>
+          </div>
+        </div>
+        <div class="header-last__final">
+          <div class="final-icon__wrap">
+            <p class="final-icon">3</p>
+          </div>
+          <div class="final-content__wrap">
+            <p class="final-content">Hoàn thành đơn hàng</p>
+          </div>
+        </div>
+      </div>
+    <div class="giohang">
+        <div class="giohang-left">
+            <h2>Giỏ hàng của bạn ({{listProduct.length}})</h2>
+            <div class="dongsanpham" *ngFor="let item of listProduct">
+                <div class="anhsanpham">
+                    <img [src]="urlPreview + '/' + item.avatar" alt="">
+                </div>
+                <div class="thongtin">
+                    <p class="tenao">{{item.productName}}</p>
+                    <p class="mau-size">Màu sắc/size: {{item.color}}/{{item.size}}</p>
+                    <table>
+                        <tr>
+                            <td (click)="changeQuantity('-', item)"><input type="submit" value="-"></td>
+                            <td>{{item.quantity}}</td>
+                            <td (click)="changeQuantity('+', item)"><input type="submit" name="" id="" value="+"></td>
+                        </tr>
+                    </table>
+                    <div class="xoa" (click)="removeShoppingCart(item)">
+                        <a>Xóa</a>
+                    </div>
+                </div>
+                <div class="gia">
+                    <p>{{item.price | number}}đ</p>
+                </div>
+                <div class="yeuthich">  
+                    <i class="ti-heart"></i>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        
+        <div class="giohang-right">
+            <div class="tamtinh">
+                <p class="tam">Tạm tính:</p>
+                <p class="giatamtinh">{{tolal | number}}đ</p>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+            <p class="mienphi">Miễn phí vấn chuyển cho đơn hàng từ 500k</p>
+            <div class="tienhanhdat" (click)="navigatePayment()">
+                <p>TIẾN HÀNH ĐẶT HÀNG</p>
+            </div>
+            <p class="uudai">Ưu đãi hội viên</p>
+            <p class="tichdiem">Tích điểm đổi quà và rất nhiều ưu đãi đặc biệt khác, chỉ dành cho hội viên của Atino.</p>
+            <p class="dnhap">Đăng nhập</p>
+        </div>
+    </div>
+</div>

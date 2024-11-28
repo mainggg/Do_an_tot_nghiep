@@ -1,0 +1,83 @@
+/* *{
+    padding: 0;
+    margin: 0;
+} */
+
+@import url('../../../../assets/icons/themify-icons/themify-icons.css');
+
+#cua-hang-content {
+    width: 100%;
+    padding-top: 100px;
+}
+
+.he-thong-cua-hang {
+    float: left;
+    margin-left: 150px;
+    width: 400px;
+}
+
+.he-thong-cua-hang h2 {
+    margin-bottom: 30px;
+}
+
+.tim-kiem-cua-hang > p {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.tim-kiem-cua-hang input {
+    height: 35px;
+    width: 300px;
+    margin-bottom: 10px;
+}
+
+.tim-kiem-cua-hang .o-tim-kiem {
+    padding-left: 10px;
+}
+
+
+.tim-kiem-cua-hang .nut-tim-kiem {
+    background-color: black;
+    color: aliceblue;
+}
+
+.cua-hang {
+    width: 350px;
+    
+}
+
+.cua-hang > p {
+    font-size: 17px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.danh-sach-cua-hang {
+    border-top: 1px solid black;
+    padding-top: 10px;
+    height: 400px;
+    overflow-y: scroll;
+}
+
+.thong-tin-cua-hang {
+    border-bottom: 1px solid black;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+.thong-tin-cua-hang p {
+    margin-bottom: 5px;
+}
+
+.thong-tin-cua-hang strong {
+    font-size: 18px;
+}
+
+.ban-do-cua-hang {
+    margin-top: 100px;
+    float: left;
+    border: 1px solid black;
+    width: 700px;
+    height: 500px;
+    margin-left: 100px;
+}

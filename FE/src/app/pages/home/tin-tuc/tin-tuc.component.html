@@ -1,0 +1,86 @@
+<section class="page-category">
+  <!-- container -->
+  <div class="container">
+    <p>TIN TỨC ATINO</p>
+  </div>
+  <!-- row -->
+  <div class="row">
+    <div *ngFor="let item of listNew" class="card">
+      <div class="card-container">
+
+        <div class="card-content" (click)="naviateDetail(item.id)">
+          <a >
+            <img class="card-content__img" [src]="item.avatar ? urlPreview + '/' + item.avatar : ''" alt="" /></a>
+          <div class="abc">
+            <p style="float: left">Tin tức Atino</p>
+            <p style="float: right">Ngày {{item.updatedAt * 1000 | date:'dd/MM/yyyy'}}</p>
+          </div>
+          <div class="content">
+            <h3>
+              <a class="content-title">{{item.title ? getFileDisplayName(item.title, 60) : ''}}</a>
+            </h3>
+            <p>
+              {{item.briefDescription ? getFileDisplayName(item.briefDescription, 120) : ''}}
+            </p>
+          </div>
+        </div>
+        <div class="button-more">
+          <a href="" class="button-content">Xem thêm <i class="fas fa-chevron-right fa-xs"></i></a>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- <div class="card">
+      <img
+        src="https://images.pexels.com/photos/389819/pexels-photo-389819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        alt=""
+      />
+      <div class="abc">
+        <p style="float: left">Tin tức Aristino</p>
+        <p style="float: right">Ngày 03/05/2024</p>
+      </div>
+      <div class="content">
+        <h3>
+          ARISTINO x THỢ NGHỆ:"Chỉ cần thiết kế 1 cái như thế này rồi copy ra là
+          đc"
+        </h3>
+        <p>
+          Bảng đạo hàm của các hàm số sơ cấp cơ bản (thường gặp), công thức tính
+          đạo hàm, quy tắc đạo hàm hàm hợp
+        </p>
+        <a href="">Xem thêm <i class="fas fa-chevron-right fa-xs"></i></a>
+      </div>
+    </div>
+    <div class="card">
+      <img
+        src="https://images.pexels.com/photos/389819/pexels-photo-389819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        alt=""
+      />
+      <div class="abc">
+        <p style="float: left">Tin tức Atino</p>
+        <p style="float: right">Ngày 03/05/2024</p>
+      </div>
+      <div class="content">
+        <h3>
+          ARISTINO x THỢ NGHỆ:"Chỉ cần thiết kế 1 cái như thế này rồi copy ra là
+          đc"
+        </h3>
+        <p>
+          Bảng đạo hàm của các hàm số sơ cấp cơ bản (thường gặp), công thức tính
+          đạo hàm, quy tắc đạo hàm hàm hợp
+        </p>
+        <a href="">Xem thêm <i class="fas fa-chevron-right fa-xs"></i></a>
+      </div>
+    </div> -->
+  </div>
+  <div class="page">
+    <nz-pagination
+      [(nzPageIndex)]="current"
+      [nzTotal]="total"
+      [nzPageSize]="pageSize"
+      [nzSize]="'small'"
+    ></nz-pagination>
+  </div>
+</section>

@@ -1,0 +1,45 @@
+<div id="cua-hang-content">
+    <div class="he-thong-cua-hang">
+        <h2>HỆ THỐNG CỬA HÀNG</h2>
+        <div class="tim-kiem-cua-hang">
+            <p><strong>Nhập tên cửa hàng để tìm kiếm</strong></p>
+            <div action="">
+                <p><input nz-input type="search" class="text-search" [(ngModel)]="shopName" placeholder="Nhập tên của hàng..." class="o-tim-kiem"/></p>
+                <p><input (click)="searchShop()" type="submit" value="Tìm kiếm" class="nut-tim-kiem"/></p>
+            </div>
+        </div>
+        <div class="cua-hang">
+            <p>Có {{total}} cửa hàng tìm thấy</p>
+            <div class="danh-sach-cua-hang">
+                <div class="thong-tin-cua-hang" *ngFor="let item of listShop">
+                    <p><strong>{{item.shopName}}</strong></p>
+                    <p>Địa chỉ: {{item.address}}</p>
+                    <p>Điện thoại: {{item.phoneNumber}}</p>
+                </div>
+                <!-- <div class="thong-tin-cua-hang">
+                    <p><strong>Aristino Time City</strong></p>
+                    <p>Địa chỉ: D7 -11-13 đường Thời đại, TTTM Times City, 458 Minh Khai, Hai Bà Trưng, HN</p>
+                    <p>Điện thoại: 02439924999</p>
+                </div>
+                <div class="thong-tin-cua-hang">
+                    <p><strong>Aristino Time City</strong></p>
+                    <p>Địa chỉ: D7 -11-13 đường Thời đại, TTTM Times City, 458 Minh Khai, Hai Bà Trưng, HN</p>
+                    <p>Điện thoại: 02439924999</p>
+                </div>
+                <div class="thong-tin-cua-hang">
+                    <p><strong>Aristino Time City</strong></p>
+                    <p>Địa chỉ: D7 -11-13 đường Thời đại, TTTM Times City, 458 Minh Khai, Hai Bà Trưng, HN</p>
+                    <p>Điện thoại: 02439924999</p>
+                </div>
+                <div class="thong-tin-cua-hang">
+                    <p><strong>Aristino Time City</strong></p>
+                    <p>Địa chỉ: D7 -11-13 đường Thời đại, TTTM Times City, 458 Minh Khai, Hai Bà Trưng, HN</p>
+                    <p>Điện thoại: 02439924999</p>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <div id="ban-do-cua-hang" class="ban-do-cua-hang">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.4095184151392!2d105.7270430745142!3d21.056299980599974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31345457295f8455%3A0x6424aee229448841!2zTmjhu5VuIENpdHk!5e0!3m2!1svi!2s!4v1685092386428!5m2!1svi!2s" height="500px" width="700px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        
+    </div>

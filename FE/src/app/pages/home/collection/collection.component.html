@@ -1,0 +1,35 @@
+<div class="collection">
+    <div class="content-collection">
+      <nz-breadcrumb nzSeparator=">">
+        <nz-breadcrumb-item><a href="./home/home-page">Trang chủ</a></nz-breadcrumb-item>
+        <nz-breadcrumb-item>
+          <a>Bộ sưu tập</a>
+        </nz-breadcrumb-item>
+      </nz-breadcrumb>
+    </div>
+    <div class="collection-product">
+      <div
+        class="content-product product"
+        *ngFor="let collection of listCollection; index as i"
+        (click)="handleProductDetail(collection)"
+      >
+        <img
+          [src]="collection.files.length > 0 ? urlPreview + '/' + collection.files[0].savedFileName : ''"
+          alt=""
+        />
+        <div class="product-infor">
+          <p>{{collection.name}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <div class="page">
+      <nz-pagination
+        [(nzPageIndex)]="current"
+        [nzTotal]="total"
+        [nzPageSize]="pageSize"
+        [nzSize]="'small'"
+      ></nz-pagination>
+    </div>
+  </div>
+  

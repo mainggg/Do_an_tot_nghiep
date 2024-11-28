@@ -1,0 +1,69 @@
+<div class="banner">
+  <div *ngFor="let item of slideClass" [class]="item.class">
+    <img nz-image [nzSrc]=" urlPreview + '/' + item.urlImage" alt="" />
+  </div>
+  <!-- <div [class]="slideClass[1]">
+    <img src="assets/img/Banner 1 - 1920x900 - Hero banner.jpg" alt="" />
+  </div> -->
+</div>
+
+<div class="carousel-wrapp">
+  <div class="wrapper">
+    <span
+      nz-icon
+      nzType="left"
+      nzTheme="outline"
+      (click)="scroll('left')"
+    ></span>
+    <ul class="carousel" #carousel>
+      <li class="card" *ngFor="let item of collection">
+        <div class="img">
+          <img [src]="item?.files[0] ? urlPreview + '/' + item?.files[0]?.savedFileName : ''" alt="img" />
+        </div>
+        <p style="font-size: 16px;">{{item.name}}</p>
+      </li>
+    </ul>
+    <span
+      nz-icon
+      nzType="right"
+      nzTheme="outline"
+      (click)="scroll('right')"
+    ></span>
+  </div>
+</div>
+
+<div class="home-categories">
+  <div class="title-home__categories-wrap">
+    <p class="title-categories">SẢN PHẨM BÁN CHẠY</p>
+  </div>
+
+  <div class="wrapper">
+    <span
+      nz-icon
+      nzType="left"
+      nzTheme="outline"
+      (click)="scrollProduct('left')"
+    ></span>
+    <ul class="carousel" #carouselProduct>
+      <li class="card-product" *ngFor="let card of productSales">
+        <div class="img" (click)="handleProductDetail(card)">
+          <img [src]="urlPreview + '/' + card.avatar" alt="img" />
+        </div>
+        <div class="card-title">
+          <p class="title-image">
+            {{ card.productName }}
+          </p>
+          <p class="price">
+            {{ card.price | number }}đ
+          </p>
+        </div>
+      </li>
+    </ul>
+    <span
+      nz-icon
+      nzType="right"
+      nzTheme="outline"
+      (click)="scrollProduct('right')"
+    ></span>
+  </div>
+</div>

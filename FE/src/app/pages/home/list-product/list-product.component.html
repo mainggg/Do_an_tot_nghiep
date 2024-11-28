@@ -1,0 +1,45 @@
+<div class="collection">
+  <div class="content-collection">
+    <nz-breadcrumb nzSeparator=">">
+      <nz-breadcrumb-item>Trang chủ</nz-breadcrumb-item>
+      <nz-breadcrumb-item>
+        <a>Áo</a>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item>Áo sơ mi</nz-breadcrumb-item>
+    </nz-breadcrumb>
+  </div>
+  <div class="collection-product">
+    <div
+      (mouseenter)="shoppingCartHover($event, i)"
+      (mouseleave)="shoppingCartHover($event, -1)"
+      class="content-product product"
+      *ngFor="let product of listProduct; index as i"
+      (click)="handleProductDetail(product)"
+    >
+      <img
+        [src]="urlPreview + '/' + product.avatar"
+        alt=""
+      />
+      <div class="product-infor">
+        <p>{{product.productName}}</p>
+        <i class="ti-heart"></i>
+      </div>
+      <p class="price">{{product.price | number}}đ</p>
+      <div [class]="cartProductClass[i]">
+        <i class="ti-bag"></i>
+      </div>
+      <div class="new">
+        <p>NEW</p>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+  <div class="page">
+    <nz-pagination
+      [(nzPageIndex)]="current"
+      [nzTotal]="total"
+      [nzPageSize]="pageSize"
+      [nzSize]="'small'"
+    ></nz-pagination>
+  </div>
+</div>

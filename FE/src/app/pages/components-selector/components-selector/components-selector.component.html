@@ -1,0 +1,567 @@
+<nz-spin [nzTip]="'loading' | translate" [nzSpinning]="spin">
+  <div class="button">
+    * Button
+    <app-button
+      [btnType]="'primary'"
+      [btnTitle]="'primary'"
+      [btnClass]="'mr-8'"
+      (btnClick)="handleClickButton()"
+    />
+
+    <app-button
+      [btnType]="'dashed'"
+      [btnTitle]="'dashed'"
+      [btnClass]="'mr-8'"
+      (btnClick)="handleClickButton()"
+    />
+
+    <app-button
+      [btnType]="'text'"
+      [btnTitle]="'text'"
+      [btnClass]="'mr-8'"
+      (btnClick)="handleClickButton()"
+    />
+
+    <app-button
+      [btnType]="'link'"
+      [btnTitle]="'link'"
+      [btnClass]="'mr-8'"
+      (btnClick)="handleClickButton()"
+    />
+
+    <app-button
+      [btnType]="'primary'"
+      [btnTitle]="'Home'"
+      [btnIconType]="'home'"
+      [btnClass]="'mr-8'"
+      (btnClick)="handleClickButton()"
+    />
+
+    <app-button
+      [btnType]="'primary'"
+      [btnIconType]="'home'"
+      [btnClass]="'mr-8'"
+      (btnClick)="handleClickButton()"
+    />
+
+    <app-button
+      [btnType]="'text'"
+      [btnIconType]="'home'"
+      [btnClass]="'mr-8'"
+      (btnClick)="openModalConfirm()"
+    />
+  </div>
+
+  <div class="quick_action mt-12">
+    * Quick action ====> {{ action }}
+    <app-quick-action
+      [action]="action"
+      [hasRole]="true"
+      (routerChange)="handleChangeAction($event)"
+    ></app-quick-action>
+  </div>
+
+  <div class="appNumberInput mt-12">
+    * App number input
+    <input
+      nz-input
+      type="text"
+      appNumberInput
+      [disabled]="action == 'read'"
+      [(ngModel)]="numberInput"
+    />
+  </div>
+  <div class="nodata mt-12">
+    * No data
+    <app-no-data />
+  </div>
+
+  <div class="pagination mt-12">
+    * Pagination
+    <app-pagination
+      [page]="page"
+      [perPage]="perPage"
+      [total]="total"
+      (emitPage)="onHandlePagination($event)"
+    />
+  </div>
+
+  <div class="select mt-12">
+    <app-select
+      [model]="value"
+      [width]="1200"
+      [type]="'unit'"
+      [listOption]="list"
+      [label]="'label'"
+      [disabled]="false"
+      [hasBorderLess]="false"
+      [allowAdd]="true"
+      [listItemDisable]="[]"
+      [mode]="'default'"
+      [placeholder]="'message.select'"
+      (addChange)="refreshConfig($event)"
+      (valueChange)="changeSelectConfig($event)"
+    />
+  </div>
+
+  <div class="hide column mt-12">
+    <app-visible-column />
+  </div>
+
+  <div class="table mt-12">
+    * Table Option 1
+    <nz-card>
+      <div nz-row nzAlign="middle" nzJustify="space-between">
+        <nz-col>
+          <p class="d-flex p-title">
+            {{ title | translate }}
+            <span class="ml-8 p-total">{{ total | number }}</span>
+          </p>
+        </nz-col>
+        <nz-col>
+          <nz-row nzGutter="8" nzAlign="middle">
+            <nz-col>
+              <app-button
+                [btnType]="'primary'"
+                [btnIconType]="'plus-circle'"
+                [btnTitle]="'button.add_new'"
+                (btnClick)="handleClickButton()"
+              >
+              </app-button>
+            </nz-col>
+            <nz-col>
+              <app-visible-column
+                [allChecked]="true"
+                [indeterminate]="false"
+                [listItem]="columns"
+                (itemListChange)="onHandleChangeColumn($event)"
+              />
+            </nz-col>
+          </nz-row>
+        </nz-col>
+      </div>
+
+      <div
+        class="d-flex j-right mt-12"
+        style="border: 1px solid #f0f0f0; padding: 4px"
+      >
+        <span (click)="handleFilterFollowStatus(1)" class="text-draft"
+          >{{ "message.draft" | translate }}: 1</span
+        >, &nbsp;
+        <span (click)="handleFilterFollowStatus(2)" class="text-pending"
+          >{{ "message.pending" | translate }}: 2</span
+        >, &nbsp;
+        <span (click)="handleFilterFollowStatus(3)" class="text-approved"
+          >{{ "message.approved" | translate }}: 3</span
+        >, &nbsp;
+        <span (click)="handleFilterFollowStatus(-3)" class="text-rejected"
+          >{{ "message.rejected" | translate }}: 4</span
+        >, &nbsp;
+        <span (click)="handleFilterFollowStatus(-2)" class="text-canceled"
+          >{{ "message.canceled" | translate }}: 5</span
+        >
+      </div>
+
+      <div class="table mt-12">
+        <nz-table
+          #dataItems
+          class="w-100"
+          nzSize="small"
+          [nzScroll]="{ x: 'auto' }"
+          [nzBordered]="true"
+          [nzFrontPagination]="false"
+          [nzShowPagination]="false"
+          [nzData]="lstData"
+          [nzNoResult]="noResult"
+        >
+          <thead>
+            <tr>
+              <th nzWidth="50px">{{ "message.stt" | translate }}</th>
+              <ng-container *ngFor="let column of columns; let i = index">
+                <ng-container *ngIf="column.visible">
+                  <th
+                    nz-resizable
+                    nzAlign="center"
+                    [nzWidth]="column.width"
+                    (nzResize)="onResize($event, i)"
+                    [nzMaxWidth]="500"
+                    [nzMinWidth]="50"
+                  >
+                    <div style="text-align: center" class="editable-cell">
+                      <nz-resize-handle nzDirection="right">
+                        <div class="resize-trigger"></div>
+                      </nz-resize-handle>
+                      <span>
+                        {{ column.title | translate }}
+                      </span>
+                    </div>
+                    <app-sort-icon
+                      [column]="column"
+                      (sortChange)="handleSort(column, $event)"
+                    />
+                  </th>
+                </ng-container>
+              </ng-container>
+              <th nzRight nzWidth="50px"></th>
+            </tr>
+          </thead>
+          <tbody [ngClass]="lstData.length > 0 ? 'striped' : ''">
+            <tr>
+              <td></td>
+              <ng-container *ngFor="let column of columns">
+                <ng-container *ngIf="column.visible && column.key !== 'status'">
+                  <td>
+                    <nz-input-group
+                      nzSearch
+                      [nzPrefix]="prefix"
+                      [nzSuffix]="suffix"
+                      style="border: none"
+                    >
+                      <input
+                        type="text"
+                        nz-input
+                        placeholder="{{ 'search' | translate }}"
+                        [(ngModel)]="filter[column.key]"
+                      />
+                      <!-- (keyup)="onHandleFilter($event)" -->
+                    </nz-input-group>
+                    <ng-template #prefix>
+                      <span nz-icon class="search-click" nzType="search"></span>
+                      <!-- (click)="onHandleFilter($event)" -->
+                    </ng-template>
+                    <ng-template #suffix>
+                      <span
+                        *ngIf="filter[column.key]"
+                        nz-icon
+                        nzTheme="fill"
+                        class="ant-input-clear-icon"
+                        nzType="close-circle"
+                        (click)="onHandleClearFilter(column.key)"
+                      ></span>
+                    </ng-template>
+                  </td>
+                </ng-container>
+                <ng-container *ngIf="column.visible && column.key == 'status'">
+                  <td>
+                    <app-select
+                      [model]="filter[column.key]"
+                      [listOption]="listStatus"
+                      [disabled]="false"
+                      [hasBorderLess]="true"
+                      [allowAdd]="false"
+                      [mode]="'default'"
+                      [placeholder]="'search'"
+                      [typeModel]="'value'"
+                      [label]="'label'"
+                      [value]="'id'"
+                    />
+                    <!-- (valueChange)="onHandleFilter($event)" -->
+                  </td>
+                </ng-container>
+              </ng-container>
+              <td nzRight></td>
+            </tr>
+            <ng-container *ngFor="let row of dataItems.data">
+              <tr
+                [ngClass]="{
+                'isDraft': row.status == 1 ? true : false,
+                'isPending': row.status == 2 ? true : false,
+                'isApproved': row.status == 3 ? true : false,
+                'isRejected': row.status == -3 ? true : false,
+                'isCanceled': row.status == -2 ? true : false,
+              }"
+              >
+                <td nzAlign="center">{{ row.stt }}</td>
+                <ng-container *ngFor="let column of columns">
+                  <ng-container
+                    *ngIf="column.visible && column.key !== 'status'"
+                  >
+                    <td>
+                      <span
+                        nz-typography
+                        nzEllipsis
+                        [nz-tooltip]="row[column.key]"
+                        [ngStyle]="{
+                          width: column.width
+                        }"
+                      >
+                        {{ row[column.key] }}
+                      </span>
+                    </td>
+                  </ng-container>
+                  <ng-container
+                    *ngIf="column.visible && column.key == 'status'"
+                  >
+                    <td nzAlign="center">
+                      <span [ngSwitch]="row[column.key]">
+                        <p *ngSwitchCase="1" class="p-status">
+                          {{ "message.draft" | translate }}
+                        </p>
+                        <p *ngSwitchCase="2" class="p-status">
+                          {{ "message.pending" | translate }}
+                        </p>
+                        <p *ngSwitchCase="3" class="p-status">
+                          {{ "message.approved" | translate }}
+                        </p>
+                        <p *ngSwitchCase="-3" class="p-status">
+                          {{ "message.rejected" | translate }}
+                        </p>
+                        <p *ngSwitchCase="-2" class="p-status">
+                          {{ "message.canceled" | translate }}
+                        </p>
+                      </span>
+                    </td>
+                  </ng-container>
+                </ng-container>
+                <td nzRight></td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </nz-table>
+        <ng-template #noResult>
+          <app-no-data></app-no-data>
+        </ng-template>
+      </div>
+    </nz-card>
+  </div>
+
+  <div class="table mt-12">
+    * Table Option 2
+    <nz-card>
+      <div nz-row nzAlign="middle" nzJustify="space-between">
+        <nz-col>
+          <p class="d-flex p-title">
+            {{ title | translate }}
+            <span class="ml-8 p-total">{{ total | number }}</span>
+          </p>
+        </nz-col>
+        <nz-col>
+          <nz-row nzGutter="8" nzAlign="middle">
+            <nz-col>
+              <app-button
+                [btnType]="'primary'"
+                [btnIconType]="'plus-circle'"
+                [btnTitle]="'button.add_new'"
+                (btnClick)="handleClickButton()"
+              >
+              </app-button>
+            </nz-col>
+            <nz-col>
+              <app-visible-column
+                [allChecked]="true"
+                [indeterminate]="false"
+                [listItem]="columns"
+                (itemListChange)="onHandleChangeColumn($event)"
+              />
+            </nz-col>
+          </nz-row>
+        </nz-col>
+      </div>
+
+      <div
+        class="d-flex j-right mt-12"
+        style="border: 1px solid #f0f0f0; padding: 4px"
+      >
+        <span (click)="handleFilterFollowStatus(1)" class="text-draft"
+          >{{ "message.draft" | translate }}: 1</span
+        >, &nbsp;
+        <span (click)="handleFilterFollowStatus(2)" class="text-pending"
+          >{{ "message.pending" | translate }}: 2</span
+        >, &nbsp;
+        <span (click)="handleFilterFollowStatus(3)" class="text-approved"
+          >{{ "message.approved" | translate }}: 3</span
+        >, &nbsp;
+        <span (click)="handleFilterFollowStatus(-3)" class="text-rejected"
+          >{{ "message.rejected" | translate }}: 4</span
+        >, &nbsp;
+        <span (click)="handleFilterFollowStatus(-2)" class="text-canceled"
+          >{{ "message.canceled" | translate }}: 5</span
+        >
+      </div>
+
+      <div class="table mt-12">
+        <nz-table
+          #dataItems
+          class="w-100"
+          nzSize="small"
+          [nzScroll]="{ x: 'auto' }"
+          [nzBordered]="true"
+          [nzFrontPagination]="false"
+          [nzShowPagination]="false"
+          [nzData]="lstData"
+          [nzNoResult]="noResult"
+          nzTableLayout="fixed"
+        >
+          <thead>
+            <tr>
+              <th nzLeft nzWidth="50px">{{ "message.stt" | translate }}</th>
+              <ng-container *ngFor="let column of columns; let i = index">
+                <ng-container *ngIf="column.visible">
+                  <th
+                    nz-resizable
+                    nzAlign="center"
+                    [nzWidth]="column.width"
+                    (nzResize)="onResize($event, i)"
+                    [nzMaxWidth]="500"
+                    [nzMinWidth]="50"
+                  >
+                    <div style="text-align: center" class="editable-cell">
+                      <nz-resize-handle nzDirection="right">
+                        <div class="resize-trigger"></div>
+                      </nz-resize-handle>
+                      <span>
+                        {{ column.title | translate }}
+                      </span>
+                    </div>
+                    <app-sort-icon
+                      [column]="column"
+                      (sortChange)="handleSort(column, $event)"
+                    />
+                  </th>
+                </ng-container>
+              </ng-container>
+              <th nzRight nzWidth="50px"></th>
+            </tr>
+          </thead>
+          <tbody [ngClass]="lstData.length > 0 ? 'striped' : ''">
+            <tr>
+              <td nzLeft></td>
+              <ng-container *ngFor="let column of columns">
+                <ng-container *ngIf="column.visible && column.key !== 'status'">
+                  <td>
+                    <!-- <nz-input-group
+                      nzSearch
+                      [nzPrefix]="prefix"
+                      [nzSuffix]="suffix"
+                      style="border: none"
+                    >
+                      <input
+                        type="text"
+                        nz-input
+                        placeholder="{{ 'search' | translate }}"
+                        [(ngModel)]="filter[column.key]"
+                        (keyup)="onHandleFilter($event)"
+                      />
+                    </nz-input-group>
+                    <ng-template #prefix>
+                      <span
+                        nz-icon
+                        class="search-click"
+                        nzType="search"
+                        (click)="onHandleFilter($event)"
+                      ></span>
+                    </ng-template>
+                    <ng-template #suffix>
+                      <span
+                        *ngIf="filter[column.key]"
+                        nz-icon
+                        nzTheme="fill"
+                        class="ant-input-clear-icon"
+                        nzType="close-circle"
+                        (click)="onHandleClearFilter(column.key)"
+                      ></span>
+                    </ng-template> -->
+                    <app-input-search-text
+                      [value]="filter[column.key]?.value"
+                      (handleSearchChange)="onHandleFilter($event, column)"
+                      (handleClearChange)="onHandleClearFilter(column)"
+                    />
+                  </td>
+                </ng-container>
+                <ng-container *ngIf="column.visible && column.key == 'status'">
+                  <td>
+                    <app-select
+                      [model]="filter[column.key]"
+                      [listOption]="listStatus"
+                      [disabled]="false"
+                      [hasBorderLess]="true"
+                      [allowAdd]="false"
+                      [mode]="'default'"
+                      [placeholder]="'search'"
+                      [typeModel]="'value'"
+                      [label]="'label'"
+                      [value]="'id'"
+                    />
+                    <!-- (valueChange)="onHandleFilter($event)" -->
+                  </td>
+                </ng-container>
+              </ng-container>
+              <td nzRight></td>
+            </tr>
+            <ng-container *ngFor="let row of dataItems.data">
+              <tr>
+                <td nzLeft nzAlign="center">{{ row.stt }}</td>
+                <ng-container *ngFor="let column of columns">
+                  <ng-container
+                    *ngIf="column.visible && column.key !== 'status'"
+                  >
+                    <td>
+                      <span
+                        nzEllipsis
+                        nz-typography
+                        [nz-tooltip]="row[column.key]"
+                        [ngStyle]="{ width: column.width }"
+                      >
+                        {{ row[column.key] }}
+                      </span>
+                    </td>
+                  </ng-container>
+                  <ng-container
+                    *ngIf="column.visible && column.key == 'status'"
+                  >
+                    <td nzAlign="center">
+                      <span [ngSwitch]="row[column.key]">
+                        <p *ngSwitchCase="1" class="p-status status-gray">
+                          {{ "message.draft" | translate }}
+                        </p>
+                        <p *ngSwitchCase="2" class="p-status status-yellow">
+                          {{ "message.pending" | translate }}
+                        </p>
+                        <p *ngSwitchCase="3" class="p-status status-green">
+                          {{ "message.approved" | translate }}
+                        </p>
+                        <p *ngSwitchCase="-3" class="p-status status-red">
+                          {{ "message.rejected" | translate }}
+                        </p>
+                        <p *ngSwitchCase="-2" class="p-status status-volcano">
+                          {{ "message.canceled" | translate }}
+                        </p>
+                      </span>
+                    </td>
+                  </ng-container>
+                </ng-container>
+                <td nzRight></td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </nz-table>
+        <ng-template #noResult>
+          <app-no-data></app-no-data>
+        </ng-template>
+      </div>
+    </nz-card>
+
+    <div class="mt-12 app-modal-content">
+      * Modal confirm
+      <app-modal-content
+        [show]="visibleModal"
+        [title]="'Tiêu đề'"
+        [header]="'Tiêu đề con'"
+        [content]="'Nội dung cảnh báo'"
+        [titleBtnConfirm]="'button.confirm'"
+        [titleBtnCancel]="'button.cancel'"
+        (cancelChange)="visibleModal = $event"
+        (confirmChange)="handleConfirm()"
+      />
+    </div>
+
+    <div class="mt-12 app-breadscrumb">
+      * Breadscrumb
+      <app-breadscrumb [listBreadCrumb]="breadcrumbs" />
+    </div>
+  </div>
+</nz-spin>
+
+<div class="loading mt-12 mb-48">
+  <nz-switch [(ngModel)]="spin"></nz-switch>
+</div>

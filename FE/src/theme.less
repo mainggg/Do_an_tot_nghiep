@@ -1,0 +1,178 @@
+// Custom Theming for NG-ZORRO
+// For more information: https://ng.ant.design/docs/customize-theme/en
+@import "../node_modules/ng-zorro-antd/ng-zorro-antd.less";
+// Override less variables to here
+// View all variables: https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/style/themes/default.less
+
+@primary-color: #244a64;
+
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background-color: #fff;
+  font-weight: 600;
+}
+
+.ant-menu-sub.ant-menu-inline {
+  background-color: #fff;
+}
+
+// .ant-menu:not(.ant-menu-horizontal) .ant-menu-item::before {
+// content: '';
+// position: absolute;
+// width: 5px;
+// height: 5px;
+// border-radius: 50%;
+// left: 35px;
+// background-color: #244A64;
+// }
+
+.ant-menu:not(.ant-menu-horizontal) .li-menu.ant-menu-item::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  left: 35px;
+  background-color: #244a64;
+}
+
+.ant-menu-submenu-selected .ant-menu-submenu-title:hover {
+  color: #fff;
+}
+
+.ant-pagination-options {
+  float: right;
+}
+
+.ant-upload.ant-upload-drag {
+  padding-bottom: 30px;
+}
+
+.li-menu.ant-menu-item-selected {
+  background-color: #244a64 !important;
+  width: 100%;
+  border-radius: 30px;
+}
+
+.ant-menu-submenu-selected .ant-menu-submenu-title {
+  background-color: #244a64 !important;
+  width: 100%;
+  border-radius: 30px;
+  font-weight: 600;
+}
+
+.li-menu.ant-menu-item-selected>a {
+  color: #fff;
+}
+
+.ant-menu-item-selected a,
+.ant-menu-item-selected a:hover {
+  color: #fff;
+}
+
+.li-menu.ant-menu-item-selected>a {
+  color: #fff;
+}
+
+.select-search .ant-select-selector {
+  padding-left: 30px !important;
+}
+
+.select-search .ant-picker-input {
+  padding-left: 20px !important;
+}
+
+.ant-menu-submenu-selected {
+  color: #fff !important;
+}
+
+.ant-menu-submenu-selected .ant-menu-submenu-arrow {
+  color: #fff !important;
+}
+
+.ant-layout {
+  background-color: white;
+}
+
+.ant-menu-inline .ant-menu-item::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  transform: scaleY(0.0001);
+  opacity: 0;
+  transition: transform 0.15s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
+  content: "";
+}
+
+.toast-container .ngx-toastr {
+  line-height: 16px;
+}
+
+.ant-input-affix-wrapper-disabled .ant-input[disabled] {
+  background: #f7f7f773;
+  color: #000;
+}
+
+.ant-input-number-disabled .ant-input-number-input {
+  cursor: not-allowed;
+  background: #f7f7f773;
+  color: #000;
+}
+
+.ant-select-disabled.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  cursor: not-allowed;
+  background: #f7f7f773;
+  color: #000;
+}
+
+.ant-picker.ant-picker-disabled {
+  cursor: not-allowed;
+  background: #f7f7f773;
+  color: #000;
+}
+
+.ant-input[disabled] {
+  border-color: #d9d9d9;
+  box-shadow: none;
+  opacity: 1;
+  cursor: not-allowed;
+  background: #f7f7f773;
+  color: #000;
+}
+
+.ant-picker-input>input[disabled] {
+  background: transparent;
+  color: #000;
+}
+
+.ant-table-thead>tr>th {
+  background-color: #eaecf0;
+}
+
+.ant-input-affix-wrapper {
+  font-size: 12px;
+}
+
+.ant-select {
+  font-size: 12px;
+}
+
+.ant-input-affix-wrapper>input.ant-input {
+  font-size: 12px;
+}
+
+.ant-menu-inline .ant-menu-item,
+.ant-menu-inline .ant-menu-submenu-title {
+  width: 100%;
+}
+
+.ant-menu-inline,
+.ant-menu-vertical,
+.ant-menu-vertical-left {
+  border-right: 0px solid #f0f0f0;
+}
+
+
+.ant-picker-input>input {
+  font-size: 12px;
+}
