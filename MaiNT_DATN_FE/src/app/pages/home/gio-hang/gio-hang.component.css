@@ -1,0 +1,303 @@
+* {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+
+.clear {
+    clear: both;
+}
+
+
+header {
+    width: 100%;
+    height: 100px;
+    position: fixed;
+}
+
+header .logo {
+    height: 67px;
+    width: 217px;
+    align-items: center;
+    float: left;
+    margin-left: 50px;
+}
+
+header .tieude {
+    font-size: 30px;
+    width: 50%;
+    align-items: center;
+    margin-top: 20px;
+    float: left;
+    margin-left: 400px;
+}
+
+
+#body-content {
+    width: 100%;
+    padding-top: 100px;
+}
+
+
+.giohang {
+    margin-top: 100px;
+    margin-left: 100px;
+}
+
+.giohang h2 {
+    padding-bottom: 10px;
+    border-bottom: 2px solid gray;
+}
+
+.giohang-left {
+    float: left;
+    width: 700px;
+}
+
+.dongsanpham {
+    margin-top: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid gray;
+    height: 165px;
+    width: 700px;
+}
+
+.dongsanpham img {
+    height: 150px;
+    width: 150px;
+}
+
+.dongsanpham .anhsanpham {
+    height: 150px;
+    width: 150px;
+    float: left;
+}
+
+.dongsanpham .thongtin {
+    width: 400px;
+    float: left;
+    margin-left: 20px;
+}
+
+.thongtin .tenao {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    height: 45px;
+    margin-right: 10px;
+}
+
+.thongtin .mau-size {
+    font-size: 16px;
+    color: #6D6E6E;
+}
+
+.thongtin input {
+    background-color: white;
+    border: none;
+    outline: none;
+    width: 10px;
+    size: 1;
+}
+
+
+.thongtin table {
+    width: 40px;
+    margin-top: 10px;
+    
+}
+.thongtin table, tr, td {
+    text-align: center;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.thongtin table td {
+    width: 5px;
+    padding: 10px 15px;
+}   
+
+.thongtin .xoa a{
+    text-decoration: none;
+    color: #6D6E6E;
+    font-size: 17px;
+}
+
+.thongtin .xoa:hover a {
+    color: red;
+}
+
+.dongsanpham .gia {
+    float: left;
+    font-size: 16px;
+    width: 100px;
+}
+
+.dongsanpham .yeuthich {
+    width: 20px;
+    float: right;
+    font-size: 22px;
+}
+
+
+.giohang-right {
+    float: left;
+    width: 300px;
+    margin-left: 100px;
+    
+}
+
+.giohang-right .tamtinh {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    
+}
+
+.giohang-right .tamtinh .tam {
+    font-size: 19px;
+    font-weight: bold;
+    float: left;
+    width: 100px;
+}
+
+.giohang-right .tamtinh .giatamtinh {
+    float: right;
+    width: 50px;
+    font-size: 19px;
+}
+
+
+.giohang-right .mienphi {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.tienhanhdat {
+    width: 300px;
+    margin-bottom: 20px;
+    border: 1px solid black;
+    text-align: center;
+    background-color: black;
+}
+
+.tienhanhdat p {
+    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: aliceblue;
+}
+
+.tienhanhdat:hover {
+    cursor: pointer;
+    background-color: #6D6E6E;
+}
+
+.giohang-right .uudai {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.giohang-right .dnhap {
+    font-weight: bold;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.header {
+    border-bottom: 1px solid #e4e4e4;
+  }
+  .header-first {
+    width: 100%;
+    display: flex;
+    height: 100px;
+    align-items: center;
+  }
+  
+  .header-arrow {
+    float: left;
+    margin-left: 30px;
+  }
+  
+  .header-arrow span {
+    font-size: 30px;
+    cursor: pointer;
+  }
+  
+  .header-last {
+    width: 100%;
+    height: 114px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .header-last__card,
+  .header-last__pay,
+  .header-last__final {
+    flex: 0.15;
+  }
+
+  .header-last__card {
+    border-bottom: 2px solid black;
+   
+  }
+
+  .card-content__wrap {
+    margin-top: 0;
+  }
+  
+  .card-icon,
+  .card-content__wrap,
+  .pay-icon__wrap,
+  .pay-content__wrap,
+  .final-icon__wrap,
+  .final-content__wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+
+ span,
+  .final-icon {
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 50%;
+    font-size: 1.25rem;
+    border: 1px solid #c1c1c1;
+    color: #c1c1c1;
+  }
+
+  .card-icon span{
+    border: 1px solid black;
+  }
+  
+  .pay-icon {
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 50%;
+    font-size: 1.25rem;
+    border: 1px solid #c1c1c1;
+    color: #c1c1c1;
+  }
+  
+  .card-content,
+  .final-content {
+    font-size: 16px;
+  }
+
+  .card-content {
+    color: black;
+  }
+  
+  .pay-content {
+    font-size: 16px;
+    
+  }
+  

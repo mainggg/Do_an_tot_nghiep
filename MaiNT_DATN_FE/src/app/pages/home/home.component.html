@@ -1,0 +1,89 @@
+<div class="header" (scroll)="onScroll()" [ngClass]="{ scroll: isScroll, header: !isScroll }">
+  <div class="left">
+    <i class="ti-menu" (click)="openMenu()"></i>
+    <span (click)="handleLogo()">AURA</span>
+  </div>
+
+  <div class="right">
+    <!-- <input class="search-input" *ngIf="isSearchVisible" type="text" [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="Search..." /> -->
+    <!-- <i class="ti-search icon-right" (click)="toggleSearch()"></i> -->
+    <i class="ti-search icon-right"></i>
+    <span nz-icon nzType="user" class="icon-right" (click)="handleUser()"></span>
+    <!-- <i class="ti-heart icon-right"></i> -->
+    <i class="ti-bag icon-right" (click)="toShoppingCart()">
+      <p class="shopping-count">{{totalCart}}</p>
+    </i>
+  </div>
+</div>
+<div class="clear"></div>
+
+<div
+  class="menu-user"
+  [ngClass]="{ 'menu-user-open': closeMenu, 'menu-user-close': !closeMenu }"
+>
+  <div class="close-menu">
+    <i class="ti-close" (click)="openMenu()"></i>
+  </div>
+  <ul nzMode="inline" nzTheme="light" nz-menu class="menu-list">
+    <li class="menu-parent" nz-menu-item (click)="navigateMenu('./home/collection')">Bộ sưu tập
+    </li>
+    <li *ngFor="let item of listCate" class="menu-parent" nz-submenu [nzTitle]="item.categoryName">
+      <ul>
+        <li *ngFor="let sub of item.categoryChild" nz-menu-item (click)="handleRoute(sub)">{{sub.categoryName}}</li>
+      </ul>
+    </li>
+    <li class="menu-parent"  nz-menu-item (click)="navigateMenu('./home/new')"> TIN TỨC
+    </li>
+    <li class="menu-parent"  nz-menu-item (click)="navigateMenu('./home/shop')"> CỬA HÀNG
+    </li>
+  </ul>
+</div>
+
+<router-outlet #myOutlet></router-outlet>
+
+<div style="clear: both;"></div>
+<div id="footer">
+  <div class="right">
+      <p>VỀ CHÚNG TÔI</p>
+      <ul>
+          <li>Câu chuyện thương hiệu</li>
+          <li>Tin tức</li>
+          <li>Đôi cánh yêu thương</li>
+          <li>Liên hệ</li>
+      </ul>
+  </div>
+  <div class="right">
+      <p>CHÍNH SÁCH BÁN HÀNG</p>
+      <ul>
+          <li>Chính sách đổi hàng</li>
+          <li>Chính sách bảo hành</li>
+          <li>Chính sách hội viên</li>
+          <li>Chính sách giao nhận</li>
+          <li>Hướng dẫn mua hàng</li>
+          <li>Chính sách bảo mật</li>
+      </ul>
+  </div>
+  <div class="right">
+      <p>TƯ VẤN</p>
+      <ul>
+          <li>Tư vấn phong cách</li>
+          <li>Tư vấn chọn size</li>
+          <li>Đôi cánh yêu thương</li>
+          <li>Hỏi đáp</li>
+      </ul>
+  </div>
+  <div class="left">
+      <p class="theodoi">THEO DÕI BẢN TIN CỦA CHÚNG TÔI</p>
+      <div class="email">
+          <input type="email" placeholder="Nhập email của bạn...">
+          <button>ĐĂNG KÝ</button>
+      </div>
+      <p class="ketnoi">Kết nối với chúng tôi</p>
+      <p class="icon"><i class="ti-facebook"></i>
+          <i class="ti-instagram"></i>
+          <i class="ti-headphone"></i>
+          <i class="ti-twitter"></i>
+          <i class="ti-youtube"></i>
+      </p>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<nz-select
+  *ngIf="typeModel == 'object'"
+  class="w-100"
+  [(ngModel)]="model"
+  [nzPlaceHolder]="!disabled ? (placeholder | translate) : ''"
+  nzAllowClear
+  [nzDisabled]="disabled"
+  nzShowSearch
+  [nzBorderless]="hasBorderLess"
+  [nzDropdownMatchSelectWidth]="false"
+  (ngModelChange)="ngModelChange($event)"
+  [compareWith]="returnCompareFn()"
+  [nzDropdownRender]="renderTemplate"
+  [class]="selectCss"
+  [nzOpen]="open"
+  (nzOpenChange)="openChange($event)"
+  [nzMode]="mode"
+  [ngStyle]="ngStyleCustom"
+  [nzNotFoundContent]="noResult"
+>
+  <nz-option
+    *ngFor="let item of listOption"
+    [nzLabel]="item[label] | translate"
+    [nzValue]="item"
+    [nzDisabled]="listItemDisable.includes(item.id)"
+  >
+  </nz-option>
+</nz-select>
+
+<nz-select
+  *ngIf="typeModel == 'value'"
+  class="w-100"
+  [(ngModel)]="model"
+  [nzPlaceHolder]="!disabled ? (placeholder | translate) : ''"
+  nzAllowClear
+  [nzDisabled]="disabled"
+  nzShowSearch
+  [nzBorderless]="hasBorderLess"
+  [nzDropdownMatchSelectWidth]="false"
+  (ngModelChange)="ngModelChange($event)"
+  [nzDropdownRender]="renderTemplate"
+  [class]="selectCss"
+  [nzOpen]="open"
+  (nzOpenChange)="openChange($event)"
+  [nzMode]="mode"
+  [ngStyle]="ngStyleCustom"
+  [nzNotFoundContent]="noResult"
+>
+  <nz-option
+    *ngFor="let item of listOption"
+    [nzLabel]="item[label] | translate"
+    [nzValue]="item[value]"
+    [nzDisabled]="listItemDisable.includes(item.id)"
+  >
+  </nz-option>
+</nz-select>
+
+<ng-template #renderTemplate>
+  <div
+    class="container"
+    style="border-top: 1px solid #ccc; padding-top: 8px"
+    *ngIf="allowAdd"
+  >
+    <app-button
+      [btnClass]="'ml-4'"
+      [btnType]="'text'"
+      [btnIconType]="'plus-circle'"
+      [btnIconTheme]="'outline'"
+      [btnTitle]="'button.add_new'"
+      (btnClick)="handleAddNew()"
+    ></app-button>
+  </div>
+</ng-template>
+<ng-template #noResult>
+  <app-no-data></app-no-data>
+</ng-template>

@@ -1,0 +1,12 @@
+<div class="content">
+    <div class="header-news">TIN TỨC AURA</div>
+    <div class="content-infor">
+        <div class="title">{{data.title}}</div>
+        <div class="infor">
+            <p>Đăng bởi {{data.author}}</p>
+            <p>Ngày {{data.updatedAt * 1000 | date: 'dd/MM/yyyy'}}</p>
+        </div>
+        <div class="full" [innerHTML]="data.content"></div>
+    </div>
+
+</div>

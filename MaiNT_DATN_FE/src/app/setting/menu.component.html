@@ -1,0 +1,63 @@
+<ul
+  nz-menu
+  style="margin-top: 50px; padding-bottom: 64px"
+  nzMode="inline"
+  [nzInlineCollapsed]="isCollapsed"
+>
+  <ng-container *ngFor="let menu of lstMenuRes">
+    <li
+      nzOpen
+      nz-submenu
+      nzTitle="{{ menu.name | translate }}"
+      nzIcon="{{ menu.classIcon }}"
+      *ngIf="access(menu.role) && menu.lstChild"
+    >
+      <ul *ngIf="menu.lstChild != null">
+        <ng-container *ngFor="let menuChild of menu.lstChild">
+          <li
+            nz-menu-item
+            style="position: relative; z-index: 99; padding-left: 36px"
+            *ngIf="access(menuChild.role)"
+            routerLink="{{ menuChild.url }}"
+          >
+            <a class="sub-menu" routerLink="{{ menuChild.url | translate }}">
+              <span class="sub-menu__text" style="color: #244a64">
+                {{ menuChild.name | translate }}
+              </span>
+            </a>
+          </li>
+        </ng-container>
+      </ul>
+    </li>
+    <li
+      nz-menu-item
+      class="li-menu"
+      nzMatchRouter
+      *ngIf="access(menu.role) && !menu.lstChild"
+    >
+      <ng-container *ngIf="!isCollapsed">
+        <a *ngIf="menu.url" routerLink="{{ menu.url | translate }}">
+          <span nz-icon nzType="{{ menu.classIcon }}" nzTheme="outline"></span>
+          &nbsp; {{ !isCollapsed ? (menu.name | translate) : "" }}
+        </a>
+      </ng-container>
+      <ng-container *ngIf="isCollapsed">
+        <a
+          *ngIf="menu.url && menu.name != 'warning.name' && isCollapsed"
+          routerLink="{{ menu.url | translate }}"
+        >
+          <span nz-icon nzType="{{ menu.classIcon }}" nzTheme="outline"></span>
+          &nbsp; {{ !isCollapsed ? (menu.name | translate) : "" }}
+        </a>
+
+        <a
+          *ngIf="menu.url && menu.name == 'warning.name' && isCollapsed"
+          routerLink="{{ menu.url | translate }}"
+        >
+          <span nz-icon nzType="{{ menu.classIcon }}" nzTheme="outline"></span>
+          &nbsp; {{ !isCollapsed ? (menu.name | translate) : "" }}
+        </a>
+      </ng-container>
+    </li>
+  </ng-container>
+</ul>

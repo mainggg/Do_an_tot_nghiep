@@ -1,0 +1,62 @@
+{
+  "en_US": "English",
+  "vi_VN": "Vietnamese",
+  "hi": "Hi",
+  "all": "All",
+  "search": "Search",
+  "status": "Status",
+  "loading": "Loading...",
+  "tooltip": {
+    "close": "Close",
+    "change": {
+      "update": "Chuyển trạng thái cập nhật",
+      "read": "Chuyển trạng thái xem chi tiết"
+    }
+  },
+  "notification": {
+    "message": "Notification",
+    "valid_action": "No valid action found"
+  },
+  "auth": {
+    "message": "You do not have permission to access this function"
+  },
+  "button": {
+    "back": "Back",
+    "close": "Close",
+    "add_new": "Add",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "rejected": "Rejected",
+    "canceled": "Canceled",
+    "approved": "Approved",
+    "quota": "Quota"
+  },
+  "pagination": {
+    "page": "page",
+    "show": "Page number",
+    "total": "of",
+    "record": "records",
+    "page.goto": "Go to",
+    "min": "The smallest page number is one",
+    "max": "The largest page number is"
+  },
+  "sort": {
+    "desc": "Sort descending",
+    "asc": "Sort ascending"
+  },
+  "message": {
+    "no_data": "No data available",
+    "no_config": "Configuration not found",
+    "select": "Select",
+    "stt": "No.",
+    "draft": "Draft",
+    "pending": "Pending approval",
+    "approved": "Approved",
+    "rejected": "Rejected",
+    "canceled": "Approval canceled",
+    "note": "Note",
+    "titleBreadscrumb": "Notification",
+    "headerBreadscrumb": "Are you sure you want to perform this action",
+    "contentBreadscrumb": "After you confirm, any unsaved data will be lost."
+  }
+}

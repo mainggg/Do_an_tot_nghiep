@@ -1,0 +1,28 @@
+<!-- DEFAULT Ở CUỐI COMPONENT -->
+<div class="fixed" *ngIf="showQuickAction && hasRole">
+  <app-button
+    *ngIf="action == 'update'"
+    [btnIconType]="'eye'"
+    [btnIconTheme]="'outline'"
+    [btnTooltip]="'tooltip.change.update'"
+    (btnClick)="changeAction()"
+  >
+  </app-button>
+  <app-button
+    *ngIf="action == 'read'"
+    [btnIconType]="'edit'"
+    [btnIconTheme]="'outline'"
+    [btnTooltip]="'tooltip.change.read'"
+    (btnClick)="changeAction()"
+  >
+  </app-button>
+  <span
+    *ngIf="action == 'read' || action == 'update'"
+    nz-icon
+    nzType="close"
+    nzTheme="outline"
+    [nz-tooltip]="'tooltip.close' | translate"
+    class="close"
+    (click)="showQuickAction = false"
+  ></span>
+</div>

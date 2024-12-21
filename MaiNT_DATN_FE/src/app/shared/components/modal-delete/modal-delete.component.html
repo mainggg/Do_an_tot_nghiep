@@ -1,0 +1,77 @@
+<nz-modal
+  [(nzVisible)]="isShowModal"
+  [nzFooter]="null"
+  [nzTitle]="modalTitleDelete"
+  [nzContent]="modalContentDelete"
+  [nzWidth]="widthModal"
+  (nzOnCancel)="onHandleCancelModal()"
+>
+  <ng-template #modalTitleDelete>
+    <div
+      style="
+        text-align: center;
+        font-size: 26px;
+        font-weight: 700;
+        padding: 17px;
+        color: #244a64;
+        background-color: #fff;
+      "
+    >
+      {{ "modal.hintInfo" | translate }} {{ titleModal | translate }}
+    </div>
+  </ng-template>
+  <ng-template #modalContentDelete>
+    <div>
+      <p style="color: #42526d">
+        {{ "modal.hintTitle" | translate }}
+        <b> {{ contentModal | translate }}?</b>
+      </p>
+      <div
+        style="
+          padding: 8px 10px 12px 10px;
+          background-color: #cff1ff33;
+          border-left: 4px solid #244a64;
+          margin-bottom: 24px;
+        "
+      >
+        <div class="d-flex a-items-center">
+          <img src="./assets/icon/warning.svg" alt="Warning" />
+          <span
+            style="
+              font-size: 26px;
+              font-weight: 700;
+              color: #244a64;
+              margin-left: 8px;
+            "
+          >
+            {{ "modal.hintWarning" | translate }}:
+          </span>
+        </div>
+        <p style="color: #42526d" class="m-0">
+          {{ "modal.hintPrefix" | translate }}
+          <b>{{ contentModal }}</b> {{ "modal.hintSuffix" | translate }}.
+        </p>
+      </div>
+      <div nz-row nzAlign="middle" nzJustify="end" nzGutter="24">
+        <nz-col nzSpan="4">
+          <app-button
+            [btnType]="'primary'"
+            [btnTitle]="'button.close'"
+            [btnClass]="'common-btn-cancel w-100'"
+            (btnClick)="onHandleCancelModal()"
+          >
+          </app-button>
+        </nz-col>
+        <nz-col nzSpan="4">
+          <app-button
+            [btnType]="'primary'"
+            [btnClass]="'w-100'"
+            [btnTitle]="'button.delete'"
+            (btnClick)="onHandleConfirmModal()"
+          >
+          </app-button>
+        </nz-col>
+      </div>
+    </div>
+  </ng-template>
+</nz-modal>

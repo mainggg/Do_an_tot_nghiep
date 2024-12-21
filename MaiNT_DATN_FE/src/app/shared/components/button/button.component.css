@@ -1,0 +1,26 @@
+* {
+  font-size: 12px;
+}
+
+[nz-icon] {
+  font-size: 14px;
+}
+
+.button-on {
+  border: 1px solid green;
+  color: green;
+}
+
+.button-off {
+  border: 1px solid red;
+  color: red;
+}
+
+.button-primary {
+  border: 1px solid blue;
+  color: blue;
+}
+
+.button-off:active {
+  box-shadow: 0 0 10px;
+}

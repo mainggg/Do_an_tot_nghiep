@@ -1,0 +1,194 @@
+@import url('../../../../assets/icons/themify-icons/themify-icons.css');
+
+#chitetsanpham {
+  width: 100%;
+  padding-top: 80px;
+  padding-left: 250px;
+  margin-bottom: 50px;
+}
+
+#chitetsanpham .tren .right {
+  float: left;
+  margin-right: 30px;
+}
+
+.yeuthich {
+  color: black;
+  font-size: 20px;
+}
+
+#chitetsanpham .tren .right img {
+  height: 600px;
+  width: 500px;
+  object-fit: cover;
+}
+
+.tren .left {
+  float: left;
+}
+
+.mau {
+  font-size: 16px;
+}
+
+.left div {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.left ul li {
+  list-style-type: none;
+  display: inline-block;
+}
+
+.left .si {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.left .si > li {
+  width: 30px !important;
+  height: 30px !important;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  display: flex;
+  border: 1px solid gray;
+  border-radius: 50%;
+  margin-right: 20px;
+  font-size: 14px;
+}
+
+.is-size {
+  background-color: black;
+  color: white;
+  border: none !important;
+}
+
+.left .si li:hover {
+  cursor: pointer;
+  border: 1px solid black;
+}
+
+.left .ten {
+  font-size: 20px !important;
+  font-weight: bold;
+  float: left;
+  margin-right: 20px;
+  width: 500px;
+}
+
+.left .gia {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.left .soluong {
+  float: left;
+  margin-right: 20px;
+  margin-top: 5px;
+}
+
+.left .sl {
+  float: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+}
+
+.left .sl li {
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  float: left;
+  border: 1px solid black;
+  border-collapse: collapse;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+}
+
+.left .tang {
+  cursor: pointer;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+}
+
+.left .tang:hover {
+  background-color: black;
+  color: aliceblue;
+}
+
+.left .themgh,
+.mua {
+  font-size: 20px;
+  border: 1px solid black;
+  width: 300px;
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.left .themgh:hover {
+  background-color: rgb(56, 54, 54);
+  color: white;
+}
+
+.left .mua {
+  background-color: black;
+  color: white;
+}
+
+.duoi {
+  margin-top: 50px;
+  width: 1000px;
+}
+
+.duoi .thongtin {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.duoi {
+  font-size: 17px;
+}
+
+.duoi .nd {
+  margin-top: 20px;
+}
+
+.clear {
+  clear: both;
+}
+
+.right {
+  height: 600px;
+  width: 400px;
+  float: left;
+}
+
+[nz-carousel-content] {
+  height: 700px;
+  width: 600px;
+  overflow: hidden;
+  background-size: cover;
+}
+
+.carousel-product {
+  height: 700px;
+  width: 600px;
+  float: left;
+  margin-right: 100px;
+}
+
+
+nz-select {
+  width: 200px;
+  margin-left: 35px;
+}

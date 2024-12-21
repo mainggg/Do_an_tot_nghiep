@@ -1,0 +1,218 @@
+<!-- <nz-spin [nzTip]="'Loading...'" [nzSpinning]="spin"> -->
+<div nz-row nzAlign="top" nzGutter="24" nzJustify="space-between">
+  <nz-col>
+    <p class="d-flex m-0 p-title">
+      {{ "Cấu hình màu" | translate }}
+      <span class="ml-8 p-total">{{ total | number }}</span>
+    </p>
+  </nz-col>
+
+  <nz-col>
+    <div nz-row nzGutter="24" nzAlign="middle">
+      <nz-col>
+        <app-button
+          [btnType]="'primary'"
+          (btnClick)="showAddPaymentMethodPopup()"
+          [btnTitle]="'Thêm mới'"
+          [btnIconType]="'plus-circle'"
+        ></app-button>
+      </nz-col>
+      <nz-col>
+        <app-visible-column
+          [allChecked]="true"
+          [indeterminate]="false"
+          [listItem]="columns"
+          (itemListChange)="onHandleChangeColumn($event)"
+        />
+      </nz-col>
+    </div>
+  </nz-col>
+</div>
+<!-- <div nz-row class="mt-24" nzAlign="middle">
+    <nz-col nzSpan="24">
+      <app-searchAndHideColumn
+        [listItem]="columns"
+        (itemListChange)="onHandleChangeColumn($event)"
+        (searchGeneralOutput)="searchGeneralFunc($event)"
+      ></app-searchAndHideColumn>
+    </nz-col>
+  </div> -->
+<div nz-row class="mt-8">
+  <nz-col nzSpan="24">
+    <nz-table
+      class="w-100"
+      nzBordered
+      [nzFrontPagination]="false"
+      [nzShowPagination]="false"
+      [nzScroll]="{ x: 'auto' }"
+      nzSize="small"
+      #dataItemsTable
+      [nzData]="dataItems"
+      [nzNoResult]="noResult"
+      (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
+    >
+      <thead>
+        <tr>
+          <th nzAlign="center" nzWidth="50px">{{ "message.stt" | translate }}</th>
+          <ng-container *ngFor="let column of columns; let i = index">
+            <ng-container *ngIf="column.visible">
+              <th
+                nz-resizable
+                nzAlign="center"
+                [nzWidth]="column.width"
+                (nzResize)="onResize($event, i)"
+                [nzMaxWidth]="500"
+                [nzMinWidth]="50"
+              >
+                <div style="text-align: center" class="editable-cell">
+                  <nz-resize-handle nzDirection="right">
+                    <div class="resize-trigger"></div>
+                  </nz-resize-handle>
+                  <span>
+                    {{ column.keyTitle | translate }}
+                  </span>
+                </div>
+                <app-sort-icon
+                  [column]="column"
+                  (sortChange)="handleSort(column, $event)"
+                />
+              </th>
+            </ng-container>
+          </ng-container>
+          <th nzRight nzWidth="100px" nzAlign="center">Thao tác</th>
+        </tr>
+      </thead>
+      <tbody [class]="total == 0 ? '' : 'striped-tr'">
+        <tr>
+          <td></td>
+          <ng-container *ngFor="let column of columns">
+            <td *ngIf="column.visible && column.keyName !== 'updatedAt'">
+              <nz-input-group
+                nzSearch
+                [nzPrefix]="prefixKeyName"
+                [nzSuffix]="suffixKeyName"
+                style="border: none"
+              >
+                <input
+                  type="text"
+                  nz-input
+                  [(ngModel)]="filterColor[column.keyName]"
+                  (keyup)="onHandleFilter($event)"
+                  placeholder="{{ 'sort.search' | translate }}"
+                />
+              </nz-input-group>
+              <ng-template #prefixKeyName>
+                <span
+                  (click)="onHandleFilter($event)"
+                  class="search-click"
+                  nz-icon
+                  nzType="search"
+                  style="color: #d9d9d9"
+                ></span>
+              </ng-template>
+              <ng-template #suffixKeyName>
+                <span
+                  nz-icon
+                  class="ant-input-clear-icon"
+                  nzTheme="fill"
+                  nzType="close-circle"
+                  *ngIf="filterColor[column.keyName]"
+                  (click)="onHandleClear(column.keyName)"
+                ></span>
+              </ng-template>
+            </td>
+            <td *ngIf="column.visible && column.keyName == 'updatedAt'">
+              <nz-range-picker
+                [(ngModel)]="filterColor[column.keyName]"
+                (ngModelChange)="onChange($event)"
+                [nzPlaceHolder]="[
+                  'Từ ngày' | translate,
+                  'Đến ngày' | translate
+                ]"
+                [nzFormat]="'dd/MM/yyyy'"
+                [nzBorderless]="true"
+              ></nz-range-picker>
+            </td>
+          </ng-container>
+          <td nzRight nzResizable></td>
+        </tr>
+        <ng-container *ngFor="let row of dataItemsTable.data, index as i">
+          <tr>
+            <!-- <td
+                  [nzChecked]="setOfCheckedId.has(row.id)"
+                  (nzCheckedChange)="onItemChecked(row.id, $event)"
+                ></td> -->
+                <td nzAlign="center">{{i+1}}</td>
+            <ng-container *ngFor="let column of columns">
+              <td *ngIf="column.visible && column.keyName !== 'updatedAt'">
+                {{ row[column.keyName] }}
+              </td>
+              <td
+                nzAlign="right"
+                *ngIf="column.visible && column.keyName === 'updatedAt'"
+              >
+                {{ row[column.keyName] * 1000 | date : "dd/MM/yyyy" }}
+              </td>
+            </ng-container>
+            <td nzRight nzResizable>
+              <div class="d-flex a-items-right j-content-right">
+                <app-button
+                  [btnType]="'text'"
+                  [btnIconType]="'edit'"
+                  [btnTooltip]="'button.update'"
+                  [btnIconTheme]="'outline'"
+                  (btnClick)="onHandleEditPaymentMethod(row)"
+                >
+                </app-button>
+                <app-button
+                  [btnType]="'text'"
+                  [btnIconType]="'delete'"
+                  [btnIconTheme]="'outline'"
+                  (btnClick)="onHandleDeletePaymentMethod(row)"
+                  [btnTooltip]="'button.delete'"
+                >
+                </app-button>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </nz-table>
+    <ng-template #noResult>
+      <app-no-data></app-no-data>
+    </ng-template>
+  </nz-col>
+</div>
+<nz-row *ngIf="total" nzGutter="24" nzAlign="middle" nzJustify="center">
+  <div nz-col nzSpan="24">
+    <app-pagination
+      [page]="page"
+      [perPage]="per_page"
+      [total]="total"
+      (emitPage)="onHandlePagination($event)"
+    ></app-pagination>
+  </div>
+</nz-row>
+<!-- </nz-spin> -->
+
+<app-modal-delete
+  [isShowModal]="isShowModalDelete"
+  [titleModal]="'Màu'"
+  [contentModal]="configDelete.code"
+  (isCancelDelete)="onHandleCancelDelete($event)"
+  (isConfirmDelete)="onHandleConfirmDelete($event)"
+>
+</app-modal-delete>
+
+<app-add-color
+  [isvisible]="isvisibleAddColor"
+  (isvisibleChange)="onAddPaymentMethodPopupVisibilityChange($event)"
+  (add)="onAddPaymentMethod()"
+></app-add-color>
+
+<app-read-color
+  [isvisible]="isvisibleEditColor"
+  [paymentMethodData]="selectedColorData"
+  (isvisibleChange)="onEditPaymentMethodPopupVisibilityChange($event)"
+  (update)="onUpdatePaymentMethod()"
+></app-read-color>

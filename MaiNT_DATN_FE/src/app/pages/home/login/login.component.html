@@ -1,0 +1,60 @@
+<div class="containTaikhoan">
+  <div class="taikhoan">
+    <div class="tab-content">
+      <div *ngIf="activeTab === 'login'">
+        <h1>Đăng Nhập</h1>
+        <div class="field-wrap">
+          <label class="title-login"> Tên đăng nhập<span class="req">*</span> </label>
+          <input name="username" type="text" required autocomplete="off" [(ngModel)]="loginData.username"
+            (focus)="onFocus($event)" (blur)="onBlur($event)" />
+        </div>
+        <div class="field-wrap">
+          <label class="title-login"> Mật khẩu<span class="req">*</span> </label>
+          <input name="pass" type="password" required autocomplete="off" [(ngModel)]="loginData.password"
+            (focus)="onFocus($event)" (blur)="onBlur($event)" />
+        </div>
+        <button (click)="handleLogin()" type="submit" class="button button-block">Đăng Nhập</button>
+      </div>
+
+      <div *ngIf="activeTab !== 'login'">
+        <h1>Đăng kí miễn phí</h1>
+        <div class="top-row">
+          <div class="field-wrap">
+            <label> Họ<span class="req">*</span> </label>
+            <input name="ho" type="text" required autocomplete="off" [(ngModel)]="signupData.firstName"
+              (focus)="onFocus($event)" (blur)="onBlur($event)" />
+          </div>
+          <div class="field-wrap">
+            <label> Tên<span class="req">*</span> </label>
+            <input name="ten" type="text" required autocomplete="off" [(ngModel)]="signupData.lastName"
+              (focus)="onFocus($event)" (blur)="onBlur($event)" />
+          </div>
+        </div>
+        <div class="field-wrap">
+          <label> Số điện thoại<span class="req">*</span> </label>
+          <input name="phoneNumber" type="text" required autocomplete="off" [(ngModel)]="signupData.phoneNumber"
+            (focus)="onFocus($event)" (blur)="onBlur($event)" />
+        </div>
+        <div class="field-wrap">
+          <label> Tên đăng nhập<span class="req">*</span> </label>
+          <input name="newUser" type="text" required autocomplete="off" [(ngModel)]="signupData.userName"
+            (focus)="onFocus($event)" (blur)="onBlur($event)" />
+        </div>
+        <div class="field-wrap">
+          <label> Mật khẩu<span class="req">*</span> </label>
+          <input name="newPass" type="password" required autocomplete="off" [(ngModel)]="signupData.passWord"
+            (focus)="onFocus($event)" (blur)="onBlur($event)" />
+        </div>
+        <button type="submit" class="button button-block" (click)="signUp()">Tạo tài khoản</button>
+      </div>
+    </div>
+    <ul class="tab-group">
+      <li class="tab" [class.active]="activeTab === 'login'">
+        <a (click)="setActiveTab('login')">Đăng nhập</a>
+      </li>
+      <li class="tab" [class.active]="activeTab === 'signup'">
+        <a (click)="setActiveTab('signup')">Đăng kí</a>
+      </li>
+    </ul>
+  </div>
+</div>

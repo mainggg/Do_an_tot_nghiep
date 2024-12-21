@@ -1,0 +1,47 @@
+<nz-input-group
+  nzSearch
+  [nzPrefix]="prefix"
+  [nzSuffix]="suffix"
+  style="border: none; padding: 4px 11px 4px 0px"
+  nzCompact
+>
+  <input
+    type="text"
+    nz-input
+    placeholder="{{ 'search' | translate }}"
+    [(ngModel)]="value"
+    (keyup)="onHandleFilter($event)"
+  />
+</nz-input-group>
+<ng-template #prefix>
+  <nz-select
+    nzSize="small"
+    nzBorderless
+    [(ngModel)]="operator"
+    [nzShowArrow]="false"
+    [nzDropdownMatchSelectWidth]="false"
+  >
+    <nz-option
+      *ngFor="let item of listOperators"
+      [nzLabel]="item.label"
+      [nzValue]="item.value"
+    ></nz-option>
+  </nz-select>
+</ng-template>
+<ng-template #suffix>
+  <span
+    *ngIf="value"
+    nz-icon
+    nzTheme="fill"
+    class="ant-input-clear-icon"
+    nzType="close-circle"
+    style="margin-right: 4px"
+    (click)="onHandleClearFilter()"
+  ></span>
+  <span
+    nz-icon
+    class="search-click"
+    nzType="search"
+    (click)="onHandleFilter($event)"
+  ></span>
+</ng-template>
