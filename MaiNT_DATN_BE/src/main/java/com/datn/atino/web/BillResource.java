@@ -41,6 +41,12 @@ public class BillResource {
         return new CommonResponse().success();
     }
 
+    @PostMapping("/bills/check")
+    public CommonResponse check(@RequestBody BillDTO input){
+        billService.checkRemain(input);
+        return new CommonResponse().success();
+    }
+
     @GetMapping("/bills/{billId}/change/{status}")
     public CommonResponse changeStatus(@PathVariable Integer billId, @PathVariable Integer status){
         billService.changeStatus(billId, status);

@@ -209,3 +209,13 @@ input {
  .ti-menu {
   transition: 0.2s ;
  }
+
+ .search-input {
+  border: 1px solid #ccc;
+  border-radius: 20px; 
+  padding: 8px 15px;
+  outline: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  width: 200px; 
+}

@@ -30,6 +30,10 @@ const routes: Routes = [
         component: PaymentComponent,
       },
       {
+        path: 'list-product',
+        component: ListProductComponent,
+      },
+      {
         path: 'list-product/:id',
         component: ListProductComponent,
       },

@@ -17,8 +17,8 @@ export class ListProductComponent implements OnInit {
 
 
   listProduct: any[] = []
-  parentId: number = this._routerActive.snapshot.params['id'];
-
+  parentId: number | null = null;
+  searchQuery: string = '';
   urlPreview: string = environment.api_end_point_preview;
   cartProductClass: string[] = [];
 
@@ -28,9 +28,11 @@ export class ListProductComponent implements OnInit {
   total: number = 12;
 
   ngOnInit(): void {
-    this._routerActive.paramMap.subscribe(params => {
-      this.parentId = this._routerActive.snapshot.params['id'];
-      this.getAllProduct()
+    this._routerActive.queryParamMap.subscribe(params => {
+      const id = this._routerActive.snapshot.paramMap.get('id');
+      this.parentId = id ? +id : null;
+      this.searchQuery = params.get('filter') || '';
+      this.getAllProduct();
     });
     for (let i = 0; i < this.listProduct.length; i++) {
       this.cartProductClass[i] = 'shopping-cart shopping-cart-none';
@@ -44,28 +46,38 @@ export class ListProductComponent implements OnInit {
     this.cartProductClass[index] = 'shopping-cart shopping-cart-flex';
   }
 
-  async getAllProduct(){
-    let dataRequest = {
+  async getAllProduct() {
+    let dataRequest: any = {
       pageNumber: this.current - 1,
       pageSize: this.pageSize,
-      filter: {
-        category: {
-          id: this.parentId
-        }
-      },
+      filter: {},
       sortProperty: 'updatedAt',
-      sortOrder: 'DESC'
+      sortOrder: 'DESC',
+    };
+
+    if (this.parentId !== null) {
+      dataRequest.filter.category = { id: this.parentId };
     }
+
+    if (this.searchQuery) {
+      dataRequest.filter.productName = this.searchQuery;
+    }
+
     await this._productService.getProduct(dataRequest).then((res) => {
-      if(res.result.responseCode == '00'){
-        this.listProduct = res.data;
-        this.total = res.dataCount;
+      if (res.result.responseCode === '00') {
+        this.listProduct = res.data; 
+        this.total = res.dataCount; 
       }
-    })
+    });
   }
 
   handleProductDetail(item: any){
     this._router.navigate(['./home/product-detail/' + item.id])
+  }
+
+  onPageChange(page: number) {
+    this.current = page;
+    this.getAllProduct();
   }
 
 }

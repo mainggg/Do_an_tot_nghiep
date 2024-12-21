@@ -39,8 +39,8 @@ export class HomeComponent implements OnInit {
   totalCart: number = 0;
 
   // Search properties
-  // searchQuery: string = '';
-  // isSearchVisible: boolean = false;
+  searchQuery: string = '';
+  isSearchVisible: boolean = false;
 
   ngOnInit(): void {
     this.getAllCate();
@@ -121,7 +121,11 @@ export class HomeComponent implements OnInit {
               }
 
   handleRoute(item: any){
-    this._router.navigate(['./home/list-product/' + item.id])
+    if (item && item.id) {
+      this._router.navigate(['./home/list-product/' + item.id]);
+    } else {
+      this._router.navigate(['./home/list-product']);
+    }
     this.closeMenu = false;
     this.isScroll = true;
   }
@@ -134,25 +138,27 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  // toggleSearch() {
-  //   this.isSearchVisible = !this.isSearchVisible;
-  // }
+  toggleSearch() {
+    this.isSearchVisible = !this.isSearchVisible;
+  }
 
-  // // Handle search input change
-  // onSearch() {
-  //   console.log("On search");
-  //   if (this.searchQuery.trim()) {
-  //     this.searchCategories(this.searchQuery);
-  //   } else {
-  //     this.getAllCate(); // Reset the category list if search is cleared
-  //   }
-  // }
+  // Handle search input change
+  onSearch() {
+    if (this.searchQuery.trim()) {
+      this._router.navigate(['/home/list-product'], {
+        queryParams: { filter: this.searchQuery.trim() }
+      });
+    } else {
+      this._router.navigate(['/home/list-product']);
+    }
+  }
 
-  // searchCategories(query: string) {
-  //   this.listCate = this.listCate.filter((category) =>
-  //     category.categoryName.toLowerCase().includes(query.toLowerCase())
-  //   );
-  // }
+  searchCategories(query: string) {
+    console.log(query);
+    this.listCate = this.listCate.filter((category) =>
+      category.categoryName.toLowerCase().includes(query.toLowerCase())
+    );
+  }
 
   @HostListener('window:scroll', ['$event'])
   onScroll() {
@@ -168,7 +174,6 @@ export class HomeComponent implements OnInit {
   
   currentIndex = 0;
   interval: any;
-  
 
   async getAllCate(){
     await this._homeService.getCategory().then((res) => {

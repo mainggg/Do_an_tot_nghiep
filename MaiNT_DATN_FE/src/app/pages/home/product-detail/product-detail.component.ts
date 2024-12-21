@@ -5,6 +5,8 @@ import { UserService } from '../user.service';
 import { environment } from '../../../../environment/environment.cloud';
 import { MessageService } from '../../../services/message.service';
 import { LocalStorage } from '../../../services/localstorage.service';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product-detail',
@@ -17,7 +19,8 @@ export class ProductDetailComponent implements OnInit {
     private _productService: UserService,
     private _activeRouter: ActivatedRoute,
     private _messageService: MessageService,
-    private _localStorage: LocalStorage
+    private _localStorage: LocalStorage,
+    private http: HttpClient
   ){}
 
   id: number = this._activeRouter.snapshot.params['id'];
@@ -121,10 +124,45 @@ export class ProductDetailComponent implements OnInit {
     this.dataSaveCart = {};
   }
 
-  navigatePayment(){
+  navigatePayment() {
+    // Kiểm tra giỏ hàng trước khi chuyển hướng
     this.saveCart();
-    if(!this.checkVilidate) return;
-    this._router.navigate(['./home/payment']);
+    if (!this.checkVilidate) return;  // Nếu chưa chọn đủ size và color, không tiếp tục
+
+    // Gọi API check với dữ liệu giỏ hàng (sản phẩm, số lượng, giá)
+    this.checkBillStatus().subscribe(
+      (response: any) => {
+        if (response.result.responseCode === '00') {
+          // Nếu giỏ hàng hợp lệ, tiếp tục thanh toán
+          this._router.navigate(['./home/payment']);
+        } else {
+          // Nếu có lỗi trong giỏ hàng, hiển thị thông báo lỗi
+          this._messageService.notificationError(response.result.message || 'Có lỗi xảy ra khi thanh toán!');
+        }
+      },
+      (error) => {
+        // Hiển thị lỗi kết nối nếu không thể gọi API
+        this._messageService.notificationError('Lỗi kết nối với máy chủ!');
+      }
+    );
   }
 
+  // Hàm gọi API /bills/check (giả sử API yêu cầu các thông tin giỏ hàng trong một đối tượng)
+  checkBillStatus(): Observable<any> {
+    // Tạo đối tượng giỏ hàng theo thông tin của sản phẩm trong giỏ
+    const bill = {
+      productBill: this.product ? [{
+        product: this.product,
+        quantity: this.quantity,
+        price: this.product.price,
+        size: this.size,
+        color: this.color,
+        createdAt: new Date().toISOString(),
+        sales: this.product.sales || 0,
+      }] : []
+    };
+
+    // Gọi API check với dữ liệu giỏ hàng
+    return this.http.post<any>('http://localhost:9090/bills/check', bill);
+  }
 }

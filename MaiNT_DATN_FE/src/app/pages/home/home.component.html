@@ -5,9 +5,9 @@
   </div>
 
   <div class="right">
-    <!-- <input class="search-input" *ngIf="isSearchVisible" type="text" [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="Search..." /> -->
-    <!-- <i class="ti-search icon-right" (click)="toggleSearch()"></i> -->
-    <i class="ti-search icon-right"></i>
+    <input class="search-input" *ngIf="isSearchVisible" type="text" [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="Tìm kiếm tên sản phẩm..." />
+    <i class="ti-search icon-right" (click)="toggleSearch()"></i>
+    <!-- <i class="ti-search icon-right"></i> -->
     <span nz-icon nzType="user" class="icon-right" (click)="handleUser()"></span>
     <!-- <i class="ti-heart icon-right"></i> -->
     <i class="ti-bag icon-right" (click)="toShoppingCart()">
@@ -26,6 +26,8 @@
   </div>
   <ul nzMode="inline" nzTheme="light" nz-menu class="menu-list">
     <li class="menu-parent" nz-menu-item (click)="navigateMenu('./home/collection')">Bộ sưu tập
+    </li>
+    <li class="menu-parent" nz-menu-item (click)="handleRoute(null)">Tất cả sản phẩm
     </li>
     <li *ngFor="let item of listCate" class="menu-parent" nz-submenu [nzTitle]="item.categoryName">
       <ul>

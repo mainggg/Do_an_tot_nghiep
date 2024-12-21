@@ -183,7 +183,12 @@ public class BillService {
         billEntity.setStatus(status);
         if(status == -1){
             List<BillProductEntity> billProductEntityList = productBillRepository.findByBillId(id);
-
+            for(BillProductEntity billProductEntity : billProductEntityList){
+                ProductEntity productEntity = productRepository.findByIdAndIsActiveTrue(billProductEntity.getProductId());
+                productEntity.setQuantity(billProductEntity.getQuantity() + productEntity.getQuantity());
+                productEntity.setTotalQuantitySales(productEntity.getTotalQuantitySales() - billProductEntity.getQuantity());
+                productRepository.save(productEntity);
+            }
         }
         billRepository.save(billEntity);
     }
@@ -209,5 +214,33 @@ public class BillService {
         totalQuantityImported = (totalQuantityImported != null) ? totalQuantityImported : 0;
         totalQuantitySold = (totalQuantitySold != null) ? totalQuantitySold : 0;
         return totalQuantityImported - totalQuantitySold;
+    }
+
+    public void checkRemain(BillDTO input){
+        BigDecimal total = BigDecimal.ZERO;
+        List<ProductEntity> productEntities1 = new ArrayList<>();
+        if(CollectionUtils.isEmpty(input.getProductBill())) throw new CustomException(HttpStatus.BAD_REQUEST, "Bạn phải chọn sản phẩm");
+        for (ProductBillDTO productBillDTO : input.getProductBill()){
+            total = total.add(productBillDTO.getPrice().multiply(BigDecimal.valueOf(productBillDTO.getQuantity())));
+            ProductEntity productEntity1 = productRepository.findByIdAndIsActiveTrue(productBillDTO.getProduct().getId());
+            productEntity1.setTotalQuantitySales(productEntity1.getTotalQuantitySales() == null ? productBillDTO.getQuantity() : productEntity1.getTotalQuantitySales() + productBillDTO.getQuantity());
+            Long checkRemain = getTotalInventory(productBillDTO.getProduct().getId(), productBillDTO.getColor(), productBillDTO.getSize());
+            int quantity = productEntity1.getQuantity() == null ? 0 : productEntity1.getQuantity() - productBillDTO.getQuantity();
+            if (quantity < 0 || productEntity1.getQuantity() == null) {
+                throw new CustomException(HttpStatus.OK,
+                        "Sản phẩm " + productEntity1.getProductName() + " với màu " +
+                                productBillDTO.getColor() + " và size " +
+                                productBillDTO.getSize() + " bạn vừa chọn đã hết hàng!");
+            }
+
+            if ((checkRemain - productBillDTO.getQuantity()) < 0) {
+                throw new CustomException(HttpStatus.OK,
+                        "Màu " + productBillDTO.getColor() + " và size " +
+                                productBillDTO.getSize() + " của sản phẩm " +
+                                productEntity1.getProductName() + " bạn vừa chọn đã hết hàng!");
+            }
+            productEntity1.setQuantity(quantity);
+            productEntities1.add(productEntity1);
+        }
     }
 }

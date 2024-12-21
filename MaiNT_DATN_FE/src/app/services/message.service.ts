@@ -26,8 +26,8 @@ export class MessageService {
   }
   notificationError(message: string) {
     this._notificationService.error(`${message}`, this.notification, {
-      timeOut: 2000,
-      extendedTimeOut: 2000,
+      timeOut: 5000,
+      extendedTimeOut: 5000,
       tapToDismiss: true,
       progressBar: true,
       closeButton: true,

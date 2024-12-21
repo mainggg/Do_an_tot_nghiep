@@ -2,10 +2,10 @@
   <div class="content-collection">
     <nz-breadcrumb nzSeparator=">">
       <nz-breadcrumb-item>Trang chủ</nz-breadcrumb-item>
-      <nz-breadcrumb-item>
+      <!-- <nz-breadcrumb-item>
         <a>Áo</a>
       </nz-breadcrumb-item>
-      <nz-breadcrumb-item>Áo sơ mi</nz-breadcrumb-item>
+      <nz-breadcrumb-item>Áo sơ mi</nz-breadcrumb-item> -->
     </nz-breadcrumb>
   </div>
   <div class="collection-product">
@@ -40,6 +40,7 @@
       [nzTotal]="total"
       [nzPageSize]="pageSize"
       [nzSize]="'small'"
+      (nzPageIndexChange)="onPageChange($event)"
     ></nz-pagination>
   </div>
 </div>
