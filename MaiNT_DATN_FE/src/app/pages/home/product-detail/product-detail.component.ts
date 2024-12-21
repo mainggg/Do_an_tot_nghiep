@@ -125,15 +125,13 @@ export class ProductDetailComponent implements OnInit {
   }
 
   navigatePayment() {
-    // Kiểm tra giỏ hàng trước khi chuyển hướng
-    this.saveCart();
-    if (!this.checkVilidate) return;  // Nếu chưa chọn đủ size và color, không tiếp tục
-
     // Gọi API check với dữ liệu giỏ hàng (sản phẩm, số lượng, giá)
     this.checkBillStatus().subscribe(
       (response: any) => {
         if (response.result.responseCode === '00') {
           // Nếu giỏ hàng hợp lệ, tiếp tục thanh toán
+          this.saveCart();
+          if (!this.checkVilidate) return; 
           this._router.navigate(['./home/payment']);
         } else {
           // Nếu có lỗi trong giỏ hàng, hiển thị thông báo lỗi

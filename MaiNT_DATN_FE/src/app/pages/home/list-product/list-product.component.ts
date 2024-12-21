@@ -28,9 +28,12 @@ export class ListProductComponent implements OnInit {
   total: number = 12;
 
   ngOnInit(): void {
-    this._routerActive.queryParamMap.subscribe(params => {
+    this._routerActive.paramMap.subscribe(() => {
       const id = this._routerActive.snapshot.paramMap.get('id');
       this.parentId = id ? +id : null;
+      this.getAllProduct();
+    });
+    this._routerActive.queryParamMap.subscribe(params => {
       this.searchQuery = params.get('filter') || '';
       this.getAllProduct();
     });

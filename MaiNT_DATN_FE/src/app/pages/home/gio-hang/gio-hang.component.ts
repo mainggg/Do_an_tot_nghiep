@@ -68,8 +68,7 @@ export class GioHangComponent {
     this.checkBillStatus().subscribe(
       (response: any) => {
         if (response.result.responseCode === '00') {
-          this._localStorage.removeAllShoppingCart();
-          this._router.navigate(['/home/payment-success']);
+          this._router.navigate(['/home/payment']);
         } else {
           this.showErrorMessage(response.result.message || 'Có lỗi xảy ra khi kiểm tra tồn kho!');
         }
