@@ -114,17 +114,18 @@ export class PaymentComponent implements OnInit {
     })
   }
 
-  validate(){
-    if(!this.dataInformation.reciver ||
-      !this.dataInformation.phoneNumber ||
-      !this.dataInformation.address
-    ){
-      this._message.notificationWarning('Bạn phải nhập đầy đủ thông tin')
-      return;
+  validate(): boolean {
+    if (!this.dataInformation.reciver || !this.dataInformation.phoneNumber || !this.dataInformation.address) {
+      this._message.notificationWarning('Bạn phải nhập đầy đủ thông tin');
+      return false; 
     }
+    return true; 
   }
 
   async payProduct() {
+    if (!this.validate()) {
+      return; 
+    }
     this.dataInformation.totalPrice = this.tolal;
     this.dataInformation.status = 1;
     this.dataInformation.paymentMethod = this.paymentMethod;

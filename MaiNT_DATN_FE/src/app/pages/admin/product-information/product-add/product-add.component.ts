@@ -144,7 +144,7 @@ export class ProductAddComponent {
       isRequired: true
     },
     {
-      title: 'Danh mục sản phẩn',
+      title: 'Danh mục sản phẩm',
       key: 'category',
       width: '200px',
       visible: true,
@@ -156,18 +156,20 @@ export class ProductAddComponent {
 
   validate(){
     for(let column of this.columns){
-      if(column.isRequired && this.dataInformation[column.key] == '' 
-      && column.key !== 'productSize' && column.key !== 'productColor' && column.key != 'avatar'){
-        this._messageService.notificationWarning('Bạn phải nhập đầy đủ thông tin bắt buộc')
+      console.log(this.columns)
+      if(column.isRequired && this.dataInformation[column.key] === undefined 
+        && column.key !== 'avatar' && column.key !== 'productSize' && column.key !== 'productColor'){
+        console.log('Key:', column.key, 'Value:', this.dataInformation[column.key]);
+        this._messageService.notificationWarning('Bạn phải nhập đầy đủ thông tin bắt buộc!')
         return false;
       }
       if((column.key == 'productSize' || column.key == 'productColor')
       && (this.listOfSelectedValueColor.length <= 0 || this.listOfSelectedValueSize.length <= 0)){
-        this._messageService.notificationWarning('Bạn phải nhập đầy đủ thông tin bắt buộc Size')
+        this._messageService.notificationWarning('Bạn phải nhập đầy đủ thông tin bắt buộc!')
         return false;
       }
       if(column.key != 'avatar' && this.avatarUrl.length <= 0){
-        this._messageService.notificationWarning('Bạn phải nhập đầy đủ thông tin bắt buộc Ảnh')
+        this._messageService.notificationWarning('Bạn phải đính kèm Ảnh!')
         return false;
       }
     }
@@ -196,15 +198,14 @@ export class ProductAddComponent {
       // }
       this.dataInformation.imageDescription = this.descriptionUrl;
       this.saveProduct();
-      
+      this._router.navigate(['./admin/product/information']);
     }
     // this.dataInformation.avatar = this.avatarUrl[0].savedFileName;
     //   console.log(this.descriptionUrl)
     //   for(let item of this.descriptionUrl){
     //     this.dataInformation.imageDescription.push(item?.response)
     //   }
-      //this.saveProduct();
-    this._router.navigate(['./admin/product/information']);
+      //this.saveProduct(); 
   }
 
   onHandleNavigate() {
